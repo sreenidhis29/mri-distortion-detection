@@ -1,13 +1,43 @@
 export default function GradCamView({ image }) {
   return (
-    <div className="card">
-      <h3>Grad-CAM</h3>
+    <div className="card scanner-container">
+      <div className="scanner-line"></div>
+      <h3 style={{ marginTop: 0, marginBottom: "15px", color: "var(--text-muted)" }}>Neural Activation (Grad-CAM)</h3>
 
       {image ? (
-        <img src={image} style={{ width: "100%", borderRadius: 10 }} />
+        <div style={{ position: "relative", width: "100%", overflow: "hidden", borderRadius: "12px" }}>
+          <img 
+            src={image} 
+            alt="Grad-CAM Map"
+            style={{ 
+              width: "100%", 
+              borderRadius: "12px", 
+              display: "block",
+              boxShadow: "0 0 30px rgba(0,0,0,0.5)",
+              maxHeight: "300px",
+              objectFit: "contain"
+            }} 
+          />
+          <div style={{
+            position: "absolute",
+            bottom: "10px",
+            right: "10px",
+            background: "rgba(0,0,0,0.7)",
+            padding: "4px 8px",
+            borderRadius: "6px",
+            fontSize: "0.7rem",
+            fontWeight: 600,
+            color: "var(--primary-hover)",
+            border: "1px solid var(--glass-border)"
+          }}>
+            XAI OVERLAY
+          </div>
+        </div>
       ) : (
-        <p>No image</p>
+        <div style={{ padding: "40px 0", textAlign: "center", color: "var(--text-muted)" }}>
+          Waiting for inference data...
+        </div>
       )}
     </div>
   );
-}
+}
